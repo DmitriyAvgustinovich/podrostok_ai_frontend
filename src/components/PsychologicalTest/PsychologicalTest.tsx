@@ -46,15 +46,13 @@ export const PsychologicalTest = () => {
           str: resultsString,
         }
       );
-      alert("Результаты успешно отправлены!");
     } catch (error) {
-      console.error("Ошибка при отправке результатов:", error);
-      alert("Не удалось отправить результаты. Пожалуйста, попробуйте позже.");
+      console.log(error);
     }
   };
 
   const handleCloseApp = () => {
-    tg.WebApp.close();
+    tg.close();
   };
 
   return (
