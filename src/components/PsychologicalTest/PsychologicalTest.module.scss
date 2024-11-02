@@ -1,0 +1,80 @@
+.PsychologicalTestWrapper {
+  margin: 20px;
+  color: var(--white-text-color);
+}
+
+.PsychologicalTestQuestionComplete {
+  margin-top: 20px;
+  font: var(--font-l);
+  text-align: center;
+}
+
+.PsychologicalTestCompleteButtonContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PsychologicalTestCompleteButton {
+  font: var(--font-m);
+  color: var(--primary-text-color);
+  background-color: var(--white-bg-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border: 2px solid var(--white-text-color);
+    background-color: var(--primary-bg-color);
+    color: var(--white-text-color);
+  }
+}
+
+
+.PsychologicalTestQuestionCounter {
+  font: var(--font-l);
+}
+
+.PsychologicalTestQuestion {
+  margin-top: 20px;
+  font: var(--font-m);
+}
+
+.PsychologicalTestAnswerButtonsWrapper {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.PsychologicalTestAnswerButton {
+  font-size: var(--font-m);
+  padding: 10px 20px;
+  color: var(--white-text-color);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PsychologicalTestAnswerYes {
+  background-color: var(--yes-button-color);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.PsychologicalTestAnswerNo {
+  margin-left: 20px;
+  background-color: var(--no-button-color);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

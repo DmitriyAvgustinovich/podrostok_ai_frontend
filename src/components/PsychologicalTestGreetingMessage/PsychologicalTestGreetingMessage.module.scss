@@ -1,0 +1,43 @@
+.PsychologicalTestGreetingMessageWrapper {
+  margin: 20px;
+  color: var(--white-text-color);
+}
+
+.PsychologicalTestGreetingMessageHeader {
+  font: var(--font-l);
+  text-align: center;
+}
+
+.PsychologicalTestGreetingMessageText {
+  margin-top: 20px;
+  font: var(--font-m);
+}
+
+.PsychologicalTestGreetingMessageTextHeader {
+  margin-top: 20px;
+  font: var(--font-m);
+}
+
+.PsychologicalTestGreetingMessageButtonContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PsychologicalTestGreetingMessageButton {
+  font: var(--font-m);
+  color: var(--primary-text-color);
+  background-color: var(--white-bg-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border: 2px solid var(--white-text-color);
+    background-color: var(--primary-bg-color);
+    color: var(--white-text-color);
+  }
+}
