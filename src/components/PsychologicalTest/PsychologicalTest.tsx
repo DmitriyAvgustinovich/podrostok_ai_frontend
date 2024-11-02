@@ -5,6 +5,8 @@ import { getPsychologicalTestResultsString } from "utils";
 import styles from "./PsychologicalTest.module.scss";
 import { PsychologicalTestGreetingMessage } from "components/PsychologicalTestGreetingMessage/PsychologicalTestGreetingMessage";
 import { tg } from "constants/tg-api";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export const PsychologicalTest = () => {
   const [isTestCompleted, setIsTestCompleted] = React.useState(false);
@@ -12,6 +14,8 @@ export const PsychologicalTest = () => {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
   const [answers, setAnswers] = React.useState({});
+
+  const [resultMessage, setResultMessage] = React.useState<string | null>(null);
 
   const totalQuestions = psychologicalTestQuestions.length;
   const currentQuestion = psychologicalTestQuestions[currentQuestionIndex];
@@ -40,12 +44,14 @@ export const PsychologicalTest = () => {
     });
 
     try {
-      await axios.post(
+      const response = await axios.post(
         "http://localhost:3000/api/controllers/get-psychological-test-result",
         {
           str: resultsString,
         }
       );
+
+      setResultMessage(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -62,18 +68,29 @@ export const PsychologicalTest = () => {
       ) : isTestCompleted ? (
         <>
           <p className={styles.PsychologicalTestQuestionComplete}>
-            Тест завершен. Перейдите в наш Telegram-бот, чтобы посмотреть
-            результаты.
+            Тест завершен.{" "}
+            {!resultMessage ? "Обрабатываем результат..." : "Ваш результат:"}
           </p>
 
-          <div className={styles.PsychologicalTestCompleteButtonContainer}>
-            <button
-              className={styles.PsychologicalTestCompleteButton}
-              onClick={handleCloseApp}
+          {resultMessage && (
+            <Markdown
+              className={styles.PsychologicalTestResultMessage}
+              remarkPlugins={[remarkGfm]}
             >
-              Перейти
-            </button>
-          </div>
+              {resultMessage}
+            </Markdown>
+          )}
+
+          {resultMessage && (
+            <div className={styles.PsychologicalTestCompleteButtonContainer}>
+              <button
+                className={styles.PsychologicalTestCompleteButton}
+                onClick={handleCloseApp}
+              >
+                Закрыть это окно
+              </button>
+            </div>
+          )}
         </>
       ) : (
         <div>
